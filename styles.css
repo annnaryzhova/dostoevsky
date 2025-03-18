@@ -2,37 +2,34 @@ html {
     height: 100vh;
 }
 
-.background {
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    opacity: 0.25;
-    width: 100%;
-    bottom: 0;
-    overflow: hidden;
-}
-
 nav {
+    display: flex;
+    flex-wrap: wrap;
+
     >* {
+        font-family: 'Times New Roman', Times, serif;
         font-size: larger;
         font-weight: 700;
         padding: 8px;
         margin: 8px;
         cursor: pointer;
-        box-shadow: 4px 2px 8px lightgray;
+        box-shadow: 4px 2px 8px #C0C0C0;
         border-radius: 8px;
         border: solid 2px;
 
+        /* если провели мышкой  */
         &:hover {
-            background-color: ;
+            background-color: #D8D8D8;
         }
 
+        /* кнопка нажата */
         &:active {
             box-shadow: none;
         }
 
-        &.selected {
-            background-color: #e8e8e8;
+        /* выбранная кнопка, задается в showSection() */
+        &.selected-section {
+            background-color: #E0E0E0;
         }
     }
 }
@@ -42,8 +39,6 @@ body {
     margin: 0;
     padding: 8px;
     box-sizing: border-box;
-    display: flex;
-    flex-flow: column;
 
     background-image: url('./images/paperboard-texture.jpg');
     background-attachment: fixed;
@@ -52,6 +47,11 @@ body {
     background-position: center;
     background-color: rgba(255, 255, 255, 0.5);
     background-blend-mode: lighten;
+
+    /*  заголовок занимает 100px, нижнее поле - 50px, 
+        главная область стремится занять все остальное место */
+    display: flex;
+    flex-flow: column;
 
     >header {
         flex: 100px 0 0;
@@ -78,19 +78,44 @@ body.beige-theme {
     }
 }
 
+
+.bio {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    font-size: larger;
+
+    /* justify - выровненный текст, как в ворде */
+    >div {
+        flex: 50% 1 0;
+        margin: 0 16px;
+        text-align: justify;
+    }
+
+    >img {
+        flex: 370px 0 0;
+        margin: 16px;
+        height: 465px;
+        margin-bottom: auto;
+    }
+}
+
+/*  Если экран узкий, как на телефоне - элементы перенесутся на новую строку, в обратном порядке. 
+    Картинка будет первой */
 .book {
     display: flex;
+    flex-wrap: wrap-reverse;
     flex-flow: row;
     gap: 8px;
-    width: 50%;
+
 
     >* {
-        margin: 8px 8px 8px 0;
+        margin: 8px 32px 8px 0;
     }
 
     >p {
-        flex: 50px 1 0;
+        flex: 250px 1 0;
         text-align: justify;
+        font-size: larger;
     }
 
     >a {
@@ -99,5 +124,75 @@ body.beige-theme {
         >img {
             height: 150px;
         }
+    }
+}
+
+.booklist {
+    list-style: none;
+}
+
+/* Палец вверх/вправо*/
+.booklist li {
+    &:before {
+        content: '\261E';
+        font-size: 32px;
+        display: inline-block;
+        width: 25px;
+    }
+
+    &.selected-book {
+        &:before {
+            content: '\261F';
+        }
+    }
+
+    >a {
+        font-size: 24px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    >p {
+        font-size: larger;
+    }
+}
+
+.facts {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    font-size: larger;
+
+    >ul {
+        text-align: justify;
+        flex: 50% 1 0;
+        margin-top: 0;
+
+        >li:first-child {
+            margin-top: 0;
+        }
+
+        >li {
+            margin-top: 16px;
+            margin-right: 16px;
+        }
+    }
+
+    >img {
+        flex: 370px 0 0;
+        margin: 0 16px auto 16px;
+        height: 465px;
+    }
+}
+
+footer {
+
+    >* {
+        margin: 0;
+        padding: 16px 8px 0 8px;
+    }
+
+    >p:first-child {
+        font-style: italic;
+        border-top: solid 1px;
     }
 }
